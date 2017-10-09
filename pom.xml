@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.bingo</groupId>
+    <artifactId>client</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>client</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- common-->
+        <dependency>
+            <groupId>com.bingo</groupId>
+            <artifactId>server-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- database -->
+        <dependency>
+            <groupId>com.bingo</groupId>
+            <artifactId>server-database-model</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <!-- user provider -->
+        <dependency>
+            <groupId>com.bingo</groupId>
+            <artifactId>server-user-provider</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- game provider -->
+        <dependency>
+            <groupId>com.bingo</groupId>
+            <artifactId>server-game-provider</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- hall provider -->
+        <dependency>
+            <groupId>com.bingo</groupId>
+            <artifactId>server-hall-provider</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+                <application.name>client</application.name>
+                <database.url>jdbc:mysql://192.168.223.24:3306/user</database.url>
+                <database.username>root</database.username>
+                <database.password>123456</database.password>
+                <validationQuery>SELECT 1</validationQuery>
+                <log.level>info</log.level>
+                <log.dirs>/server/logs/database/</log.dirs>
+                <log.appendName>STDOUT</log.appendName>
+                <zookeeper.address>192.168.223.25:2181</zookeeper.address>
+                <registry.file>D:/registry_cache/${project.build.finalName}</registry.file>
+                <test.port>33000</test.port>
+            </properties>
+        </profile>
+    </profiles>
+</project>
